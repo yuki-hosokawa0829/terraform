@@ -1,7 +1,7 @@
 #master image
 # name should be "avd-vm-image"
 data "azurerm_image" "master_image" {
-  name                = "AVD_updated_custom"
+  name                = "AVD_Image"
   resource_group_name = var.resource_group_name
 }
 
