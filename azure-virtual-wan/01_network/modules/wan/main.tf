@@ -97,13 +97,13 @@ resource "azurerm_firewall_policy_rule_collection_group" "location01-policy1" {
     action   = "Dnat"
 
     rule {
-      name                  = "location01-nat1-rule1"
-      protocols             = ["TCP"]
-      source_addresses      = ["219.166.164.110"]
-      destination_address   = azurerm_firewall.location01-fw01.virtual_hub.0.public_ip_addresses.0
-      destination_ports     = ["3389"]
-      translated_address    = var.dc_jw_private_address
-      translated_port       = 3389
+      name                = "location01-nat1-rule1"
+      protocols           = ["TCP"]
+      source_addresses    = ["219.166.164.110"]
+      destination_address = azurerm_firewall.location01-fw01.virtual_hub.0.public_ip_addresses.0
+      destination_ports   = ["3389"]
+      translated_address  = var.dc_jw_private_address
+      translated_port     = 3389
     }
 
   }
@@ -124,9 +124,9 @@ resource "azurerm_firewall_policy_rule_collection_group" "location01-policy1" {
   }
 
   network_rule_collection {
-    name = "allow_network_rules1"
+    name     = "allow_network_rules1"
     priority = 1050
-    action = "Allow"
+    action   = "Allow"
 
     rule {
       name                  = "allow_https_rule"
