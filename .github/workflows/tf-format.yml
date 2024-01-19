@@ -14,13 +14,8 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-      WORKING_DIR: 'vm-joined-to-active-directory'
 
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ${{ env.WORKING_DIR }}
     
     steps:
     # Checkout the repository to the GitHub Actions runner
