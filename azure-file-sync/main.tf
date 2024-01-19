@@ -9,7 +9,9 @@ provider "azurerm" {
   client_secret   = var.usr_client_secret
 }
 
-provider "azuread" {}
+provider "azuread" {
+  tenant_id = var.usr_tenant_id
+}
 
 resource "azurerm_resource_group" "example" {
   location = var.location
