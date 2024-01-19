@@ -9,6 +9,8 @@ provider "azurerm" {
   client_secret   = var.usr_client_secret
 }
 
+provider "azuread" {}
+
 resource "azurerm_resource_group" "example" {
   location = var.location
   name     = "${var.prefix}-rg"
