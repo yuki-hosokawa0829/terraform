@@ -17,7 +17,7 @@ resource "azurerm_role_assignment" "role_vm_onprem" {
 resource "azurerm_role_assignment" "role_storagesync" {
   scope                = var.storage_id
   role_definition_name = "Reader and Data Access"
-  principal_id         = "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1"  //data.azuread_service_principal.example.object_id
+  principal_id         = "2a2b9908-6ea1-4ae2-8e65-a410df84e7d1" //data.azuread_service_principal.example.object_id
 }
 
 //resource "azuread_user" "example" {
