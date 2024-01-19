@@ -2,6 +2,8 @@ name: 'Terraform Format and Validate'
 
 on:
   push:
+    branches:
+      - main
     
 permissions:
   contents: read # for actions/checkout to fetch code
@@ -16,6 +18,9 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'azure-virtual-desktop', 'azure-virtual-wan', 'bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
     
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -28,12 +33,35 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
+      id: init
       run: terraform init -backend=false
 
     # Validate terraform filescls
     - name: Terraform Validate
+      id: validate
       run: terraform validate
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      id: fmt
       run: terraform fmt -check -recursive
+
+    # Generate and show an execution plan
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -input=false -no-color
+
+    - name: Comment PR
+      uses: actions/github-script@v3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outputs.stdout }}\`
+          #### Terraform Initialization ⚙️\`${{ steps.init.outputs.stdout }}\`
+          #### Terraform Plan 📖\`${{ steps.plan.outputs.stdout }}\``;
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Terraform checks in directory '${{ matrix.working-directory }}'\n` + output
+          })
