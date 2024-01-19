@@ -10,7 +10,9 @@ provider "azurerm" {
 }
 
 provider "azuread" {
-  tenant_id = var.usr_tenant_id
+  tenant_id     = var.usr_tenant_id
+  client_id     = var.usr_client_id
+  client_secret = var.usr_client_secret
 }
 
 resource "azurerm_resource_group" "example" {

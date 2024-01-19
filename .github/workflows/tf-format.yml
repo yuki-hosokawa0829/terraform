@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'azure-virtual-desktop/01_shared-image-gallery', 'azure-virtual-desktop/02_hostpool', 'azure-virtual-desktop/03_user-group', 'azure-virtual-wan/01_network', 'azure-virtual-wan/02_connection','azure-virtual-wan/03_virtual-machine','bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
+        working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
     
     defaults:
       run:
