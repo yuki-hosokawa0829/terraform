@@ -47,10 +47,6 @@ jobs:
       run: terraform fmt -check -recursive
 
     # Generate and show an execution plan
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -input=false -no-color
-
     - name: Comment PR
       uses: actions/github-script@v3
       with:
@@ -58,10 +54,11 @@ jobs:
         script: |
           const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outputs.stdout }}\`
           #### Terraform Initialization ⚙️\`${{ steps.init.outputs.stdout }}\`
-          #### Terraform Plan 📖\`${{ steps.plan.outputs.stdout }}\``;
           github.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: `## Terraform checks in directory '${{ matrix.working-directory }}'\n` + output
           })
+
+    # #### Terraform Plan 📖\`${{ steps.plan.outputs.stdout }}\``;
