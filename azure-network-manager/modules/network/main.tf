@@ -260,7 +260,7 @@ resource "azurerm_network_manager_network_group" "network_group03" {
 
 # Add virtual networks to a network group as static members
 resource "azurerm_network_manager_static_member" "example" {
-  count = local.num03
+  count                     = local.num03
   name                      = "example-nmsm${count.index}"
   network_group_id          = azurerm_network_manager_network_group.network_group03.id
   target_virtual_network_id = azurerm_virtual_network.vnet03[count.index].id

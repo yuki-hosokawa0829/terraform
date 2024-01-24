@@ -28,8 +28,8 @@ resource "azurerm_netapp_pool" "example" {
 }
 
 resource "azurerm_netapp_volume" "volume01" {
-  name     = "example-netappvolume01"
-  location = var.location
+  name                       = "example-netappvolume01"
+  location                   = var.location
   resource_group_name        = var.resource_group_name
   account_name               = azurerm_netapp_account.example.name
   pool_name                  = azurerm_netapp_pool.example.name
@@ -54,8 +54,8 @@ resource "azurerm_netapp_volume" "volume01" {
 }
 
 resource "azurerm_netapp_volume" "volume02" {
-  name     = "example-netappvolume02"
-  location = var.location
+  name                       = "example-netappvolume02"
+  location                   = var.location
   resource_group_name        = var.resource_group_name
   account_name               = azurerm_netapp_account.example.name
   pool_name                  = azurerm_netapp_pool.example.name
