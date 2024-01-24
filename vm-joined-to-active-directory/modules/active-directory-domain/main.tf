@@ -473,3 +473,84 @@ resource "azurerm_windows_virtual_machine" "test" {
   boot_diagnostics {}
 
 }
+
+resource "azurerm_public_ip" "static_avd02" {
+  name                = "avd02-pip"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
+resource "azurerm_network_interface" "nic_avd02" {
+  name                = "avd02-nic"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  ip_configuration {
+    name                          = "primary"
+    subnet_id                     = var.domain_members_subnet_id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.static_avd02.id
+  }
+
+}
+
+resource "azurerm_windows_virtual_machine" "avd02" {
+  name                     = "avd02"
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  size                     = "Standard_B2ms"
+  admin_username           = var.admin_username
+  admin_password           = var.admin_password
+  provision_vm_agent       = true
+  enable_automatic_updates = true
+
+  network_interface_ids = [
+    azurerm_network_interface.nic_avd02.id,
+  ]
+
+  source_image_reference {
+    publisher = "microsoftwindowsdesktop"
+    offer     = "windows-11"
+    sku       = "win11-22h2-avd"
+    version   = "latest"
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  boot_diagnostics {}
+
+}
+
+resource "azurerm_virtual_machine_extension" "join_domain_avd02" {
+  name                 = "Join-Domain-${azurerm_windows_virtual_machine.avd02.name}"
+  publisher            = "Microsoft.Compute"
+  type                 = "JsonADDomainExtension"
+  type_handler_version = "1.3"
+  virtual_machine_id   = azurerm_windows_virtual_machine.avd02.id
+
+  settings = <<SETTINGS
+    {
+        "Name": "${var.active_directory_domain_name}",
+        "OUPath": "",
+        "User": "${var.admin_username}@${var.active_directory_domain_name}",
+        "Restart": "true",
+        "Options": "3"
+    }
+SETTINGS
+
+  protected_settings = <<SETTINGS
+    {
+        "Password": "Cul33329"
+    }
+SETTINGS
+
+  depends_on = [
+    azurerm_virtual_machine_extension.create-ad-forest
+  ]
+
+}
