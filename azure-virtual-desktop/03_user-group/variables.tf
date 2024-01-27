@@ -5,27 +5,27 @@ variable "prefix" {
 
 variable "aad_domain" {
   description = "Azure AD Domain"
-  default     = "cloudservicewestcloudsteady.onmicrosoft.com"
+  default     = "yourazureaddomain.onmicrosoft.com"
 }
 
 variable "usr_subscription_id" {
   description = "The Azure Subscription ID"
-  default     = "4d55c914-726b-4a03-b002-54c4bf217ad5"
+  default     = "your-azure-subscription-id"
 }
 
 variable "usr_tenant_id" {
   description = "Tenant ID"
-  default     = "9781ab08-ef7d-4e4f-b6f0-c595b7a023cb"
+  default     = "your-entra-id-tenant-id"
 }
 
 variable "usr_client_id" {
   description = "Service Principal ID"
-  default     = "78fedf0d-7c87-4643-b4dc-13062b0752ed"
+  default     = "your-terraform-service-principal-id"
 }
 
 variable "usr_client_secret" {
   description = "Password for the Administrator account"
-  default     = "eQ28Q~S5MT4nodAKe3MrLD_mnVQyb7zXP3HanaxE"
+  default     = "your-terraform-service-principal-secrets"
 }
 
 locals {
