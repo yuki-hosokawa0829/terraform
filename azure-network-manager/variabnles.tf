@@ -13,7 +13,7 @@ variable "location" {
 
 variable "admin_username" {
   description = "Username for the Administrator account"
-  default     = "azuradmin"
+  default     = "azureadmin"
 }
 
 variable "admin_password" {
