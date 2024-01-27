@@ -1,5 +1,11 @@
 terraform {
   required_version = ">= 1.5.7"
+  backend "azurerm" {
+    resource_group_name  = "tamopstfstates"
+    storage_account_name = "tamopstf856fw017rbsal"
+    container_name       = "tfstatedevops"
+    key                  = "sample.main.tfstate"
+  }
 }
 
 provider "azurerm" {
