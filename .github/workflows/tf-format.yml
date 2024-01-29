@@ -27,8 +27,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
-    
+        #working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
+        working-directory: ['sample']
+
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}

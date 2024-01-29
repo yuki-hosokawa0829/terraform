@@ -27,27 +27,31 @@ variable "domain_netbios_name" {
 }
 
 variable "domain_admin_username" {
-  default = "ppt-admin"
+  default = "azureadmin"
 }
 
 variable "domain_admin_password" {
   default = "P@ssw0rd0123"
 }
 
-variable "subscription_id" {
-  default = "4d55c914-726b-4a03-b002-54c4bf217ad5"
+variable "usr_subscription_id" {
+  description = "The Azure Subscription ID"
+  default     = "your-azure-subscription-id"
 }
 
-variable "tenant_id" {
-  default = "9781ab08-ef7d-4e4f-b6f0-c595b7a023cb"
+variable "usr_tenant_id" {
+  description = "Tenant ID"
+  default     = "your-entra-id-tenant-id"
 }
 
-variable "client_id" {
-  default = "78fedf0d-7c87-4643-b4dc-13062b0752ed"
+variable "usr_client_id" {
+  description = "Service Principal ID"
+  default     = "your-terraform-service-principal-id"
 }
 
-variable "client_secret" {
-  default = "eQ28Q~S5MT4nodAKe3MrLD_mnVQyb7zXP3HanaxE"
+variable "usr_client_secret" {
+  description = "Password for the Administrator account"
+  default     = "your-terraform-service-principal-secrets"
 }
 
 locals {
