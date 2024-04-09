@@ -1,4 +1,4 @@
-$SubscriptionId = "4d55c914-726b-4a03-b002-54c4bf217ad5"
+$SubscriptionId = "yoursubscriptionid012345"
 $ResourceGroupName = "avd-rg"
 $StorageAccountName = "storagenncd2d"
 $SamAccountName = "storagenncd2d"
@@ -52,7 +52,7 @@ $storageAccount.AzureFilesIdentityBasedAuth.ActiveDirectoryProperties
 
 
 # mount azure files on any domain-joined machine
-net use Z: \\storagenncd2d.file.core.windows.net\fslogix oWW4+HTIOEf+BWm1EuCBLPk9I5TNhck0oEI6ZSEzwpL9HShVoXZQB+jnTVrkLc8J9yl7ceg/UghF+AStLSXrrw== /user:Azure\storagenncd2d
+net use Z: \\yourstorageaccountname.file.core.windows.net\fileshare storageaccountley== /user:Azure\storagenncd2d
 
 # assign permissions to the mounted drive
 icacls Z: /grant "INFRA\TestAVDUserGroup:(M)"
