@@ -36,19 +36,7 @@ resource "azurerm_network_security_group" "nsg_dc" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "3389"
-    source_address_prefix      = "219.166.164.110"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "AllowRDPInboundAlt"
-    priority                   = 1010
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3389"
-    source_address_prefix      = "121.82.111.99"
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 
@@ -67,19 +55,7 @@ resource "azurerm_network_security_group" "nsg_dm" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "3389"
-    source_address_prefix      = "219.166.164.110"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "AllowRDPInboundAlt"
-    priority                   = 1010
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3389"
-    source_address_prefix      = "121.82.111.99"
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 

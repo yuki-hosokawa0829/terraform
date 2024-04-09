@@ -34,5 +34,5 @@ variable "domain_member01_private_ip_address" {
 }
 
 locals {
-  admin_public_ip = "219.166.164.110"
+  admin_public_ip = "*"
 }

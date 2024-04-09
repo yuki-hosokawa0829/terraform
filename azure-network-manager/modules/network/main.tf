@@ -361,7 +361,7 @@ resource "azurerm_network_manager_admin_rule" "admin_rule" {
 
   source {
     address_prefix_type = "IPPrefix"
-    address_prefix      = "219.166.164.110/32"
+    address_prefix      = "*"
   }
 
   destination {

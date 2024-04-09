@@ -57,7 +57,7 @@ resource "azurerm_network_security_rule" "AllowRDPInbound" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "3389"
-  source_address_prefix       = "219.166.164.110"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_fs.name
@@ -82,7 +82,7 @@ resource "azurerm_network_security_rule" "AllowRDPInboundOnprem" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "3389"
-  source_address_prefix       = "219.166.164.110"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_fs_onprem.name
@@ -107,7 +107,7 @@ resource "azurerm_network_security_rule" "AllowRDPInboundDC" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "3389"
-  source_address_prefix       = "219.166.164.110"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_dc.name
