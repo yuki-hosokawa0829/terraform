@@ -6,7 +6,7 @@ resource "azurerm_public_ip" "example" {
 }
 
 resource "azurerm_network_interface" "example" {
-  name = "myNIC"
+  name                = "myNIC"
   location            = var.location
   resource_group_name = var.resource_group_name
 

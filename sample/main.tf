@@ -44,7 +44,7 @@ resource "azurerm_network_security_group" "nsg" {
   name                = "nsg${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  
+
   security_rule {
     name                       = "AllowRDP"
     description                = "Allow RDP"
