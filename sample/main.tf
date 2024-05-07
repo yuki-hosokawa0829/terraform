@@ -1,5 +1,6 @@
 terraform {
   required_version = ">= 1.5.7"
+
   backend "azurerm" {
     resource_group_name  = "tamopstfstates"
     storage_account_name = "tamopstf856fw017rbsal"
@@ -43,6 +44,7 @@ resource "azurerm_network_security_group" "nsg" {
   name                = "nsg${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  
   security_rule {
     name                       = "AllowRDP"
     description                = "Allow RDP"
