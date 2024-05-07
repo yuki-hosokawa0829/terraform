@@ -1,4 +1,4 @@
-name: 'Terraform Format and Validate'
+name: "Terraform Format and Validate"
 
 on:
   push:
@@ -7,15 +7,15 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, synchronize]    
-    
+    types: [opened, synchronize]
+
 permissions:
   id-token: write
   contents: read # for actions/checkout to fetch code
-  
+
 jobs:
   terraform-unit-tests:
-    name: 'Terraform Format and Validate'
+    name: "Terraform Format and Validate"
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
@@ -28,40 +28,40 @@ jobs:
       fail-fast: false
       matrix:
         #working-directory: ['azure-ad-connect', 'azure-file-sync', 'azure-kubernetes-service', 'azure-netapp-files', 'azure-network-manager', 'azure-private-dns-resolver', 'azure-route-server', 'bgp-enabled-network', 'core-environment-lab', 'global-load-balancer', 'vm-active-directory', 'vm-joined-to-active-directory', 'vm-nat-gateway']
-        working-directory: ['sample']
+        working-directory: ["sample"]
 
     defaults:
       run:
         working-directory: ${{ matrix.working-directory }}
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      id: init
-      run: terraform init -backend=false
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend=false
 
-    # Validate terraform filescls
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate
+      # Validate terraform filescls
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      id: fmt
-      run: terraform fmt -check -recursive
+      # Checks that all Terraform configuration files adhere to a canonical format
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check -recursive
 
     # Generate and show an execution plan
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -input=false -no-color -out=${{ matrix.working-directory }}.main.tfplan
+    #- name: Terraform Plan
+    #  id: plan
+    #  run: terraform plan -input=false -no-color -out=${{ matrix.working-directory }}.main.tfplan
 
     #- name: Comment PR
     #  uses: actions/github-script@v3
