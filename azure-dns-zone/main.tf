@@ -35,4 +35,7 @@ module "dns-zone" {
   resource_group_name = azurerm_resource_group.example.name
   domain_name         = var.domain_name
   subdomain_name      = var.subdomain_name
+  host_name           = var.text_record["host_name"]
+  text_record         = var.text_record["text_record"]
+  ttl                 = var.text_record["ttl"]
 }

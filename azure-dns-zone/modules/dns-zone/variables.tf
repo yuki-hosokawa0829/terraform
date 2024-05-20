@@ -12,3 +12,18 @@ variable "subdomain_name" {
   description = "The subdomain name to create"
   type        = string
 }
+
+variable "host_name" {
+  description = "The host name for the text record"
+  type        = string
+}
+
+variable "text_record" {
+  description = "The text record to create"
+  type        = string
+}
+
+variable "ttl" {
+  description = "The TTL for the text record"
+  type        = number
+}

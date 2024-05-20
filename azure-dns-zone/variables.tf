@@ -20,6 +20,12 @@ variable "location" {
   default     = "japaneast"
 }
 
+variable "text_record" {
+  description = "The text record to create"
+  type        = map(string)
+  sensitive   = true
+}
+
 variable "subscription_id" {
   description = "The Azure subscription ID"
   type        = string
